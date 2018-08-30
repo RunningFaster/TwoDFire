@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'menu',
     'rest_framework',
     'django_api_key',
+    'message',
 ]
 
 MIDDLEWARE = [
@@ -105,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-IGNORE_API_KEY_CHECK_FOR = ["/admin/.*", "/docs/.*", "/order/.*"]
+IGNORE_API_KEY_CHECK_FOR = ["/admin/.*", "/docs/.*", "/order/.*", "/message/.*"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

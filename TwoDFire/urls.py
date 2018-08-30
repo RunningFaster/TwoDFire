@@ -28,4 +28,5 @@ urlpatterns = [
     # 添加了api-key的权限验证，在请求头上带上api-key信息到数据库进行验证之后才能正确访问路由地址
     # 请求头信息有api-key参数，参数的值为UUID，根据名字自动生成的
     path('order/', include('menu.urls')),
+    path('message/', include('message.urls')),
 ]

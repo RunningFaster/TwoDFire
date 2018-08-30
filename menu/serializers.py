@@ -46,34 +46,20 @@ class PlaceanhoderSerializer(serializers.Serializer):
         sessionToken = validated_data['sessionToken']
         return sessionToken
 
-class BusinessdatabydaySerializer(serializers.Serializer):
+class checkhodersuccessSerializer(serializers.Serializer):
     # 指定rest表单信息
-    databyday = serializers.CharField(write_only=True, help_text="订单数据统计报表（按天或按月）")
+    outOrderId = serializers.CharField(write_only=True, help_text="三方外卖的订单号")
 
     def create(self, validated_data):
-        databyday = validated_data['databyday']
-        return databyday
+        outOrderId = validated_data['outOrderId']
+        return outOrderId
 
-class OrdersourcebydaySerializer(serializers.Serializer):
+class cancelorderSerializer(serializers.Serializer):
     # 指定rest表单信息
-    databyday = serializers.CharField(write_only=True, help_text="订单来源统计报表（按天或按月）")
+    outOrderId = serializers.CharField(write_only=True, help_text="三方外卖的订单号")
+    reason = serializers.CharField(write_only=True, help_text="订单取消原因")
 
     def create(self, validated_data):
-        databyday = validated_data['databyday']
-        return databyday
+        outOrderId = validated_data['outOrderId']
+        return outOrderId
 
-class PaymentorderdatebydaySerializer(serializers.Serializer):
-    # 指定rest表单信息
-    databyday = serializers.CharField(write_only=True, help_text="订单支付统计报表（按天或按月）")
-
-    def create(self, validated_data):
-        databyday = validated_data['databyday']
-        return databyday
-
-class OrderdatabydaySerializer(serializers.Serializer):
-    # 指定rest表单信息
-    databyday = serializers.CharField(write_only=True, help_text="点菜数据统计报表（按天或按月）")
-
-    def create(self, validated_data):
-        databyday = validated_data['databyday']
-        return databyday

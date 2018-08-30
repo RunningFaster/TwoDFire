@@ -1,5 +1,6 @@
 import redis, json
 
+# 信息失效策略还未设置
 redis_conn = redis.ConnectionPool(host="127.0.0.1",port="6379", db=1)
 my_redis = redis.Redis(connection_pool=redis_conn)
 

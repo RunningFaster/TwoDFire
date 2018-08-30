@@ -88,7 +88,7 @@ def Checkwhethertheorder():
     post_dict['method'] = 'dfire.thirdpart.wm.order.confirm'
     # post_dict['entityId'] = '00134699'
 
-    post_dict['outOrderId'] = '0001'
+    post_dict['outOrderId'] = 'ylkj0001'
     post_dict['orderFrom'] = 118
 
     sorted_x = dict(sorted(post_dict.items(), key=lambda x: x[0]))
@@ -252,7 +252,7 @@ def queryIndividualmenuinformation():
 
     '''请求的方法'''
     post_dict['method'] = "dfire.single.menu.query"
-    post_dict['itemId'] = "001346995f2e341a015f4c05f2dc660e"
+    post_dict['itemId'] = "00134699657bc7d901657e648f9413c3"
     post_dict['entityId'] = "00134699"
 
     sorted_x = dict(sorted(post_dict.items(), key=lambda x: x[0]))
@@ -273,6 +273,43 @@ def queryIndividualmenuinformation():
                              }).text
     print(me)
 # queryIndividualmenuinformation()
+'''查询店铺订单详情列表'''
+def checkorderlist():
+    # 固定数据，无需修改
+    post_dict = {}
+    APP_SECRET = "d67ee437b292c992b8c34b5ea984139c"
+    now_time = int(time.time())
+    post_dict['timestamp'] = now_time
+    post_dict['v'] = 1.0
+    post_dict['appKey'] = "69966cafe1d22ebcf8c48907339d3e4d"
+
+    '''请求的方法'''
+    post_dict['method'] = "dfire.shop.order.instance.list"
+    # post_dict['itemId'] = "001346995f2e341a015f4c05f2dc660e"
+    post_dict['entityId'] = "00134699"
+    post_dict['orderIds'] = '["ylkjrjbm02"]'
+    post_dict['currDate'] = "20180824"
+
+    sorted_x = dict(sorted(post_dict.items(), key=lambda x: x[0]))
+    res = APP_SECRET + ''.join([str(key) + str(sorted_x[key]) for key in sorted_x]) + APP_SECRET
+    res = hashlib.sha1(res.encode("utf-8")).hexdigest()
+
+    '''签名'''
+    post_dict['sign'] = res.upper()
+
+    me = requests.post(url='http://open.2dfire.com/router',
+                       data={'method': post_dict['method'],
+                             'v': post_dict['v'],
+                             'timestamp': post_dict['timestamp'],
+                             'appKey': post_dict['appKey'],
+                             'sign': post_dict['sign'],
+                             # 'itemId': post_dict['itemId'],
+                             'entityId': post_dict['entityId'],
+                             'orderIds': post_dict['orderIds'],
+                             'currDate': post_dict['currDate'],
+                             }).text
+    print(me)
+# checkorderlist()
 '''订单数据统计报表（按月）'''
 def Orderstatisticsreportbymonth():
     # 固定数据，无需修改
@@ -304,7 +341,7 @@ def Orderstatisticsreportbymonth():
                              'currMonth': post_dict['currMonth'],
                              }).text
     print(me)
-Orderstatisticsreportbymonth()
+# Orderstatisticsreportbymonth()
 '''订单数据统计报表（按天）'''
 def Orderstatisticsreportbyday():
     # 固定数据，无需修改
@@ -318,7 +355,7 @@ def Orderstatisticsreportbyday():
     '''请求的方法'''
     post_dict['method'] = "dfire.shop.day.statistic.data"
     post_dict['entityId'] = "00134699"
-    post_dict['currDate'] = '20180711'
+    post_dict['currDate'] = '20180823'
 
     sorted_x = dict(sorted(post_dict.items(), key=lambda x: x[0]))
     res = APP_SECRET + ''.join([str(key) + str(sorted_x[key]) for key in sorted_x]) + APP_SECRET
@@ -326,7 +363,7 @@ def Orderstatisticsreportbyday():
 
     '''签名'''
     post_dict['sign'] = res.upper()
-    print(post_dict)
+    # print(post_dict)
     me = requests.post(url='http://open.2dfire.com/router',
                        data={'method': post_dict['method'],
                              'v': post_dict['v'],
@@ -459,10 +496,10 @@ def Savememerinformation():
     print(me)
 # Savememerinformation()
 
-url = 'http://127.0.0.1:8000/order/getAllmenu/'
+url = 'http://127.0.0.1:8000/order/orderdatalist/'
 header = {'API-KEY':'d36b7c12-8535-4940-963b-5cfead94d1bc'}
 
-data = {'sessionToken': 10}
+data = {'databyday': '20180706'}
 
 res = requests.post(url=url, headers=header,data=data)
 # res = requests.get(url=url)

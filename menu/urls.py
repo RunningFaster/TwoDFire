@@ -13,20 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
-from menu import orderdatahandler, menuhandler
+from menu import menuhandler
+from message import messagedatahandler
 
 urlpatterns = [
     # 查询菜，下单
     url(r'^placeanhoder/$', menuhandler.placeanhoderView.as_view(), name="placeanhoder"),
+    url(r'^checkhodersuccess/$', menuhandler.checkhodersuccessView.as_view(), name="checkhodersuccess"),
     url(r'^getAllmenu/$', menuhandler.selectmenu, name="getAllmenu"),
-    # 营业数据统计接口
-    url(r'^businessdatabyday/$', orderdatahandler.businessdatabydayView.as_view(), name="businessdatabyday"),
-    url(r'^ordersourcebyday/$', orderdatahandler.ordersourcebydayView.as_view(), name="ordersourcebyday"),
-    url(r'^paymentorderdatebyday/$', orderdatahandler.paymentorderdatebydayView.as_view(), name="paymentorderdatebyday"),
-    url(r'^orderdatabyday/$', orderdatahandler.orderdatabydayView.as_view(), name="orderdatabyday"),
-
+    url(r'^cancelorder/$', menuhandler.cancelorderView.as_view(), name="cancelorder"),
 
 ]
