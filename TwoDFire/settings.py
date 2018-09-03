@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
-MDEIA_ROOT=os.path.join(BASE_DIR, r'static\mdeia')
+# MDEIA_ROOT=os.path.join(BASE_DIR, r'static\mdeia')
 # Rest framework settings
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S',
