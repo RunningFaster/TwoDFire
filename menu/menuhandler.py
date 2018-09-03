@@ -246,4 +246,4 @@ def selectmenu(request):
         result['model'] = [menu for menu in result['model'] if menu['kindId'] == aglio]
     else:
         result['model'] = [menu for menu in result['model'] if menu['kindId'] == '001346995f2e3416015f4c0537fe4345']
-    return render(request, 'market.html', {'result': result, 'result_aglio': result_aglio})
+    return HttpResponse(json.dumps(result['model']))
